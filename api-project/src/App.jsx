@@ -19,9 +19,9 @@ function App() {
         <Route path="/home" element={<HomePage />}>
           <Route path="info" element={<Info />}></Route>
         </Route>
+        <Route path="/todos" element={<TodosPage />}></Route>
         <Route path="/albums" element={<AlbumPage />}></Route>
         <Route path="/posts" element={<PostsPage />}></Route>
-        <Route path="/todos" element={<TodosPage />}></Route>
         <Route path="/photos" element={<PhotosPage />}></Route>
       </Routes>
     </>
