@@ -2,8 +2,6 @@ import { Link, Routes, Route, Outlet } from "react-router";
 import "../css/homePage.css";
 import {} from "react";
 function HomePage() {
-  localStorage.setItem("current-user", "bob");
-
   function logOut() {
     localStorage.setItem("current-user", "");
     // nav("/login", { replace: true });
@@ -28,7 +26,7 @@ function HomePage() {
         <Link className="nav-links" to={"info"}>
           info
         </Link>
-        <h1>Hello {localStorage.getItem("current-user")}</h1>
+        <h1>Hello {JSON.parse(localStorage.getItem("current-user")).name}</h1>
       </nav>
       <Outlet />
     </>
