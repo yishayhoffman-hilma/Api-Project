@@ -1,21 +1,28 @@
 import { Link, Routes, Route, Outlet } from "react-router";
 import "../css/homePage.css";
+import {} from "react";
 function HomePage() {
   localStorage.setItem("current-user", "bob");
+
+  function logOut() {
+    localStorage.setItem("current-user", "");
+    // nav("/login", { replace: true });
+    console.log("logged out");
+  }
 
   return (
     <>
       <nav>
-        <Link className="nav-links" to={""}>
+        <Link className="nav-links" onClick={logOut} to={"/login"}>
           logout
         </Link>
-        <Link className="nav-links" to={"albums"}>
+        <Link className="nav-links" to={"/albums"}>
           albums
         </Link>
-        <Link className="nav-links" to={"posts"}>
+        <Link className="nav-links" to={"/posts"}>
           posts
         </Link>
-        <Link className="nav-links" to={"todos"}>
+        <Link className="nav-links" to={"/todos"}>
           todos
         </Link>
         <Link className="nav-links" to={"info"}>
