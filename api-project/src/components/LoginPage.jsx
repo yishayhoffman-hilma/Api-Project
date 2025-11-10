@@ -19,6 +19,10 @@ function LoginPage() {
   function checkPassword(user) {
     if (valuePassword === user.website) {
       console.log("login sucsseusful");
+      localStorage.setItem("current-user", {
+        name: valueUser,
+        userId: user.id,
+      });
       nav("/home", { replace: true });
     } else {
       console.log("wrong password");
@@ -31,7 +35,9 @@ function LoginPage() {
 
   function handleSubmit(e, valueUser) {
     e.preventDefault();
-    fetch("http://localhost:3500/users")
+    fetch("http://localhost:3500/users", {
+      method: "GET",
+    })
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);

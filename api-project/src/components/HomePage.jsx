@@ -1,8 +1,6 @@
 import { Link, Routes, Route, Outlet } from "react-router";
 import "../css/homePage.css";
 function HomePage() {
-  localStorage.setItem("current-user", "bob");
-
   return (
     <>
       <nav>
