@@ -1,8 +1,12 @@
-import { useState } from "react";
-import "./App.css";
+// import { useState } from "react";
+// import "./App.css";
 
 function RegisterPage() {
-  return <></>;
+  return (
+    <>
+      <h1>register</h1>
+    </>
+  );
 }
 
 export default RegisterPage;
