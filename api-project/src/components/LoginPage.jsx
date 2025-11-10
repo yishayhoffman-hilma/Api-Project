@@ -19,10 +19,13 @@ function LoginPage() {
   function checkPassword(user) {
     if (valuePassword === user.website) {
       console.log("login sucsseusful");
-      localStorage.setItem("current-user", {
-        name: valueUser,
-        userId: user.id,
-      });
+      localStorage.setItem(
+        "current-user",
+        JSON.stringify({
+          name: valueUser,
+          userId: user.id,
+        })
+      );
       nav("/home", { replace: true });
     } else {
       console.log("wrong password");
