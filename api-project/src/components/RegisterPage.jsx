@@ -1,7 +1,11 @@
 import { useState } from "react";
 
 function RegisterPage() {
-  return <></>;
+  return (
+    <>
+      <h1>register</h1>
+    </>
+  );
 }
 
 export default RegisterPage;
