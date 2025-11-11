@@ -16,13 +16,16 @@ function LoginPage() {
   function handlePasswordChange(e) {
     setValuePassword(e.target.value);
   }
-  function checkPassword(user) {
-    if (valuePassword === user.website) {
+  function checkPassword(data) {
+    if (valuePassword === data.website) {
       console.log("login sucsseusful");
-      localStorage.setItem("current-user", {
-        name: valueUser,
-        userId: user.id,
-      });
+      localStorage.setItem(
+        "current-user",
+        JSON.stringify({
+          name: valueUser,
+          userId: data.id,
+        })
+      );
       nav("/home", { replace: true });
     } else {
       console.log("wrong password");
@@ -35,29 +38,31 @@ function LoginPage() {
 
   function handleSubmit(e, valueUser) {
     e.preventDefault();
-    fetch("http://localhost:3500/users", {
+    fetch(`http://localhost:3500/users?username=${valueUser}`, {
       method: "GET",
     })
       .then((response) => response.json())
-      .then((data) => {
-        // console.log(data);
-        // data.find((user)=>)
-        data.map((user) => {
-          if (valueUser === user.username) {
-            console.log("user ex");
-            checkPassword(user);
-            return 0;
-          } else {
-            console.log("user does not exist");
-            setErorr("login failed");
-          }
-        });
+      .then((user) => {
+        console.log(user[0].username);
+
+        if (user[0].username) {
+          console.log("user ex");
+          console.log(user[0].id);
+          console.log(user[0].username);
+          checkPassword(user[0]);
+        } else {
+          console.log("user does not exist");
+          setErorr("login failed");
+        }
       });
-    // console.log("hi");
+  }
+  function toRegister() {
+    nav("/register");
   }
   return (
     <>
-      <h1>Log in:</h1>
+      <button onClick={toRegister}>Register</button>
+      <h1>Login:</h1>
       <form onSubmit={(e) => handleSubmit(e, valueUser)}>
         <label>
           User name:

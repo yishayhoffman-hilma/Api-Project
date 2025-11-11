@@ -19,7 +19,7 @@ function RegisterPage() {
     setValueVerifyPassword(e.target.value);
   }
 
-  function checkPassword(data) {
+  function checkPassword() {
     if (valuePassword === valueVerifyPassword) {
       console.log("register sucsseusful");
 
@@ -28,36 +28,41 @@ function RegisterPage() {
         body: JSON.stringify({
           username: valueUser,
           website: valuePassword,
-          id: JSON.stringify(data.length + 1),
+          id: JSON.stringify(new Date()),
         }),
       });
       nav("/login", { replace: true });
     } else {
       console.log("passwords are not the same");
-      setErorr("register failed");
+      setErorr("passwords are not the same");
     }
     return 0;
   }
 
   function handleSubmit(e, valueUser) {
     e.preventDefault();
-    fetch("http://localhost:3500/users", {
+    fetch(`http://localhost:3500/users?username=${valueUser}`, {
       method: "GET",
     })
       .then((response) => response.json())
       .then((data) => {
-        const existingUser = data.find((user) => user.username === valueUser);
-        if (existingUser) {
+        // const existingUser = data.find((user) => user.username === valueUser);
+        if (data[0]) {
           console.log("user already exists");
-          setErorr("user already exists");
+          setErorr("please choose another user.");
           return;
         }
-        checkPassword(data);
+        checkPassword();
       });
+  }
+  function toLogin() {
+    nav("/login");
   }
 
   return (
     <>
+      <button onClick={toLogin}>Login</button>
+
       <h1>register:</h1>
       <form onSubmit={(e) => handleSubmit(e, valueUser)}>
         <label>
