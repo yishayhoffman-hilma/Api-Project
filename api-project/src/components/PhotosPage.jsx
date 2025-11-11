@@ -35,11 +35,7 @@ function PhotosPage() {
         onSubmit={(e) => {
           e.preventDefault();
         }}
-      >
-        <h3>add photo</h3>
-        <input />
-        <input type="submit" />
-      </form>
+      ></form>
       {photosData.map((value, index) => {
         return (
           <Photo

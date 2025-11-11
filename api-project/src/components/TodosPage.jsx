@@ -5,10 +5,14 @@ function TodosPage() {
   const [todoData, settodoData] = useState([]);
   const [myInput, setmyInput] = useState("");
   const userDetails = JSON.parse(localStorage.getItem("current-user"));
+  const [sortMethod, setSortMethod] = useState("&_sort=id");
 
   useEffect(() => {
     async function getData() {
-      const url = `http://localhost:3500/todos?userId=${userDetails.userId}`;
+      const url =
+        `http://localhost:3500/todos?userId=${userDetails.userId}` + sortMethod;
+      console.log(url);
+
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -23,12 +27,12 @@ function TodosPage() {
       }
     }
     getData();
-  }, [userDetails.userId]);
+  }, [userDetails.userId, sortMethod]);
 
   function addTodo() {
     const myPackage = {
       userId: userDetails.userId,
-      id: uuidv4(),
+      // id: uuidv4(),
       title: myInput,
       completed: false,
     };
@@ -48,6 +52,8 @@ function TodosPage() {
   return (
     <>
       <h2>todos</h2>
+
+      <div>add todo:</div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -63,7 +69,19 @@ function TodosPage() {
         />
         <input type="submit"></input>
       </form>
-      {/* <TodoList data={todoData} /> */}
+
+      <div>choose sort method</div>
+      <select
+        onChange={(event) => {
+          console.log(event.target.value);
+
+          setSortMethod(event.target.value);
+        }}
+      >
+        <option value="&_sort=id">id</option>
+        <option value="&_sort=title">alphabetical</option>
+      </select>
+
       {todoData.map((value, index) => {
         return (
           <Todo
@@ -80,13 +98,13 @@ function TodosPage() {
   );
 }
 
-function uuidv4() {
-  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c) =>
-    (
-      +c ^
-      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (+c / 4)))
-    ).toString(16)
-  );
-}
+// function uuidv4() {
+//   return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c) =>
+//     (
+//       +c ^
+//       (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (+c / 4)))
+//     ).toString(16)
+//   );
+// }
 
 export default TodosPage;
