@@ -28,7 +28,7 @@ function RegisterPage() {
         body: JSON.stringify({
           username: valueUser,
           website: valuePassword,
-          id: JSON.stringify(new Date()),
+          // id: JSON.stringify(new Date()),
         }),
       });
       nav("/login", { replace: true });
