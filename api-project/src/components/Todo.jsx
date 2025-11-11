@@ -1,23 +1,57 @@
 import { Fragment } from "react";
 
 function TodoList(props) {
-  function deleteTodo() {}
+  async function deleteTodo(url) {
+    try {
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+
+      const result = await response.json();
+      console.log("Delete successful:", result);
+    } catch (error) {
+      console.error("Error deleting data:", error);
+    }
+    props.settodoData((prev) => {
+      return [...prev].filter((value, index) => {
+        return index !== props.index;
+      });
+    });
+  }
 
   return (
     <>
-      {props.data.map((value) => {
-        return (
-          <Fragment key={value.id}>
-            <p>
-              {value.id}
-              {".\t"}
-              {value.title}
-            </p>
-            <input type="checkbox" checked={value.completed}></input>
-            <button onClick={() => deleteTodo()}>delete</button>
-          </Fragment>
-        );
-      })}
+      <Fragment key={props.id}>
+        <p>
+          {props.id}
+          {".\t"}
+          {props.title}
+        </p>
+        <input
+          type="checkbox"
+          checked={props.completed}
+          onChange={() => {
+            props.settodoData((prev) => {
+              return prev.map((todo, index) => {
+                if (index === props.index) {
+                  return {
+                    ...todo,
+                    completed: !todo.completed,
+                  };
+                }
+                return todo;
+              });
+            });
+          }}
+        ></input>
+        <button
+          onClick={() => {
+            deleteTodo(`http://localhost:3500/todos/${props.id}`);
+          }}
+        >
+          delete
+        </button>
+      </Fragment>
     </>
   );
 }
