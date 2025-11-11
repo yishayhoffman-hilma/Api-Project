@@ -30,7 +30,9 @@ function AlbumPage() {
       <h2>albums page</h2>
 
       {albumsData.map((value, index) => {
-        return <Album key={index} value={value} index={index} />;
+        return (
+          <Album title={value.title} key={index} value={value} index={index} />
+        );
       })}
     </>
   );

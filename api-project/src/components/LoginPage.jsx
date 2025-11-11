@@ -43,9 +43,10 @@ function LoginPage() {
     })
       .then((response) => response.json())
       .then((user) => {
-        console.log(user[0].username);
+        // console.log(user[0].username);
+        console.log(user);
 
-        if (user[0].username) {
+        if (user.length) {
           console.log("user ex");
           console.log(user[0].id);
           console.log(user[0].username);

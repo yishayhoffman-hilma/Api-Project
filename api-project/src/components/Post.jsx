@@ -3,7 +3,7 @@ import PostsPage from "./PostsPage";
 import { useParams } from "react-router";
 // import "./App.css";
 function Post(props) {
-  const { postId, userName } = useParams();
+  const { postId } = useParams();
   //   const { user } = useParams();
 
   const [postBody, setPostBody] = useState("");
@@ -24,7 +24,7 @@ function Post(props) {
       .then((data) => {
         setComments(data);
       });
-  });
+  }, [postId]);
 
   return (
     <Fragment key={props.index}>
