@@ -8,6 +8,7 @@ import PostsPage from "./components/PostsPage";
 import TodosPage from "./components/TodosPage";
 import PhotosPage from "./components/PhotosPage";
 import Info from "./components/Info";
+import Album from "./components/Album";
 
 function App() {
   return (
@@ -20,8 +21,9 @@ function App() {
           <Route path="todos" element={<TodosPage />}></Route>
           <Route path="info" element={<Info />}></Route>
           <Route path="albums" element={<AlbumPage />}></Route>
+          <Route path="albums/album/:id" element={<PhotosPage />}></Route>
           <Route path="posts" element={<PostsPage />}></Route>
-          <Route path="photos" element={<PhotosPage />}></Route>
+          {/* <Route path="photos" element={<PhotosPage />}></Route> */}
         </Route>
       </Routes>
     </>
