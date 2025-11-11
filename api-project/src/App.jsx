@@ -21,18 +21,12 @@ function App() {
         <Route path="/home" element={<HomePage />}>
           <Route path="todos" element={<TodosPage />}></Route>
           <Route path="info" element={<Info />}></Route>
-<<<<<<< HEAD
           <Route path="todos" element={<TodosPage />}></Route>
-          <Route path="albums" element={<AlbumPage />}></Route>
-          <Route path="posts" element={<PostsPage />}></Route>
-          <Route path="posts/post/:userName/:postId" element={<Post />}></Route>
-          <Route path="photos" element={<PhotosPage />}></Route>
-=======
           <Route path="albums" element={<AlbumPage />}></Route>
           <Route path="albums/album/:id" element={<PhotosPage />}></Route>
           <Route path="posts" element={<PostsPage />}></Route>
-          {/* <Route path="photos" element={<PhotosPage />}></Route> */}
->>>>>>> 7a34b38505c25cf35e6371549615b61fe8e03525
+          <Route path="posts/post/:userName/:postId" element={<Post />}></Route>
+          <Route path="photos" element={<PhotosPage />}></Route>
         </Route>
       </Routes>
     </>
