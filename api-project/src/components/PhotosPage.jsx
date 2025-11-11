@@ -31,8 +31,25 @@ function PhotosPage() {
 
   return (
     <>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
+        <h3>add photo</h3>
+        <input />
+        <input type="submit" />
+      </form>
       {photosData.map((value, index) => {
-        return <Photo key={index} thumbnailUrl={value.thumbnailUrl} />;
+        return (
+          <Photo
+            setPhotosData={setPhotosData}
+            key={index}
+            thumbnailUrl={value.thumbnailUrl}
+            id={value.id}
+            index={index}
+          />
+        );
       })}
     </>
   );
