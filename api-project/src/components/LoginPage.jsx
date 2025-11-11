@@ -23,7 +23,7 @@ function LoginPage() {
         "current-user",
         JSON.stringify({
           name: valueUser,
-          userId: data.id,
+          userId: user.id,
         })
       );
       nav("/home", { replace: true });
