@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import TodoList from "./TodoList";
+import TodoList from "./Todo";
 
 function TodosPage() {
   const [todoData, settodoData] = useState([]);
+  const [myInput, setmyInput] = useState("");
+  const userDetails = JSON.parse(localStorage.getItem("current-user"));
 
   useEffect(() => {
     async function getData() {
-      const userDetails = JSON.parse(localStorage.getItem("current-user"));
-      const url = "http://localhost:3500/todos";
+      const url = `http://localhost:3500/todos?userId=${userDetails.userId}`;
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -16,24 +17,44 @@ function TodosPage() {
 
         const result = await response.json();
 
-        await result.map((value) => {
-          if (value.userId == userDetails.userId) {
-            settodoData((prev) => {
-              return [...prev, value];
-            });
-          }
-        });
+        settodoData(result);
       } catch (error) {
         console.error(error.message);
       }
     }
     getData();
-  }, []);
+  }, [userDetails.userId]);
 
-  console.log(todoData);
+  function addTodo() {
+    fetch("http://localhost:3500/todos", {
+      method: "POST",
+      body: JSON.stringify({
+        userId: userDetails.userId,
+        id: new Date(),
+        title: myInput,
+        completed: false,
+      }),
+    });
+  }
+
   return (
     <>
       <h2>todos</h2>
+      <form
+        onSubmit={() => {
+          // e.preventDefault();
+          addTodo();
+        }}
+      >
+        <input
+          value={myInput}
+          type="text"
+          onChange={(event) => {
+            setmyInput(event.target.value);
+          }}
+        />
+        <input type="submit"></input>
+      </form>
       <TodoList data={todoData} />
     </>
   );

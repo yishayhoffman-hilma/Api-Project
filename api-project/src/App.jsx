@@ -17,12 +17,12 @@ function App() {
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
         <Route path="/home" element={<HomePage />}>
+          <Route path="todos" element={<TodosPage />}></Route>
           <Route path="info" element={<Info />}></Route>
+          <Route path="albums" element={<AlbumPage />}></Route>
+          <Route path="posts" element={<PostsPage />}></Route>
+          <Route path="photos" element={<PhotosPage />}></Route>
         </Route>
-        <Route path="/todos" element={<TodosPage />}></Route>
-        <Route path="/albums" element={<AlbumPage />}></Route>
-        <Route path="/posts" element={<PostsPage />}></Route>
-        <Route path="/photos" element={<PhotosPage />}></Route>
       </Routes>
     </>
   );
