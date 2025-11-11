@@ -23,6 +23,7 @@ function App() {
           <Route path="info" element={<Info />}></Route>
           <Route path="todos" element={<TodosPage />}></Route>
           <Route path="albums" element={<AlbumPage />}></Route>
+          <Route path="albums/album/:id" element={<PhotosPage />}></Route>
           <Route path="posts" element={<PostsPage />}></Route>
           <Route path="posts/post/:userName/:postId" element={<Post />}></Route>
           <Route path="photos" element={<PhotosPage />}></Route>
