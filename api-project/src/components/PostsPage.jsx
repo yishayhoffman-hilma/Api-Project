@@ -66,6 +66,7 @@ function PostsPage() {
       >
         <label>
           Title:
+          <br />
           <input
             value={myInput}
             type="text"
