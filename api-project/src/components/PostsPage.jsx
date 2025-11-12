@@ -88,9 +88,10 @@ function PostsPage() {
         </label>
         <label>
           content:
-          <input
+          <br />
+          <textarea
             value={bodyInput}
-            type="text"
+            type="textarea"
             onChange={(event) => {
               setBodyInput(event.target.value);
             }}

@@ -7,7 +7,18 @@
 
 .post {
   border: 2px solid rgb(84, 182, 235);
-  border-radius: 20%;
+  border-radius: 30%;
   padding: 1rem;
   font-size: 20px;
+  overflow: hidden;
 }
+.comment {
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 15%;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  overflow: hidden;
+}
+/* h3{
+
+} */

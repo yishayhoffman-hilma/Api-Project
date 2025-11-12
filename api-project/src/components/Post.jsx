@@ -30,11 +30,14 @@ function Post(props) {
     <Fragment key={props.index}>
       <h2>{postTitle}</h2>
       <p className="post">{postBody}</p>
+      <h3>comments:</h3>
       {comments.map((comment) => {
         return (
           <>
-            <h5>{comment.body}</h5>
-            <h6 style={{ fontStyle: "italic" }}>by: {comment.name}</h6>
+            <div className="comment">
+              <h5>{comment.body}</h5>
+              <h6 style={{ fontStyle: "italic" }}>by: {comment.name}</h6>
+            </div>
           </>
         );
       })}
