@@ -1,10 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
 import PostsPage from "./PostsPage";
 import { useParams } from "react-router";
-// import "./App.css";
 function Post(props) {
   const { postId } = useParams();
-  //   const { user } = useParams();
 
   const [postBody, setPostBody] = useState("");
   const [postTitle, setPostTitle] = useState("");
@@ -15,7 +13,6 @@ function Post(props) {
     })
       .then((response) => response.json())
       .then((post) => {
-        // console.log(post);
         setPostBody(post.body);
         setPostTitle(post.title);
       });
