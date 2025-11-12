@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-// import "./App.css";
-
 function LoginPage() {
-  //   const [user, setUser] = useState("");
   const [valueUser, setValueUser] = useState("");
   const [valuePassword, setValuePassword] = useState("");
   const [erorr, setErorr] = useState("");
@@ -30,8 +27,6 @@ function LoginPage() {
     } else {
       console.log("wrong password");
       setErorr("login failed");
-
-      //   return <h3 style={{ color: "red" }}>{erorr}</h3>;
     }
     return 0;
   }
@@ -43,7 +38,6 @@ function LoginPage() {
     })
       .then((response) => response.json())
       .then((user) => {
-        // console.log(user[0].username);
         console.log(user);
 
         if (user.length) {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 
 function RegisterPage() {
@@ -6,7 +6,6 @@ function RegisterPage() {
   const [valuePassword, setValuePassword] = useState("");
   const [valueVerifyPassword, setValueVerifyPassword] = useState("");
   const [erorr, setErorr] = useState("");
-  const [status, setStatus] = useState(true);
 
   const nav = useNavigate();
   function handleUserChange(e) {
@@ -28,7 +27,6 @@ function RegisterPage() {
         body: JSON.stringify({
           username: valueUser,
           website: valuePassword,
-          // id: JSON.stringify(new Date()),
         }),
       });
       nav("/login", { replace: true });
@@ -46,7 +44,6 @@ function RegisterPage() {
     })
       .then((response) => response.json())
       .then((data) => {
-        // const existingUser = data.find((user) => user.username === valueUser);
         if (data[0]) {
           console.log("user already exists");
           setErorr("please choose another user.");

@@ -4,7 +4,6 @@ import {} from "react";
 function HomePage() {
   function logOut() {
     localStorage.setItem("current-user", "");
-    // nav("/login", { replace: true });
     console.log("logged out");
   }
 

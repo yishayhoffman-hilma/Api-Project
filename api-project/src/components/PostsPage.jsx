@@ -7,25 +7,14 @@ function PostsPage() {
   const currentUser = JSON.parse(localStorage.getItem("current-user"));
   const userId = currentUser.userId;
   const currentUserName = currentUser.name;
-  //   console.log(currentUser);
-  //   console.log(userId);
 
   useEffect(() => {
     fetch(`http://localhost:3500/posts?userId=${userId}`, { method: "GET" })
       .then((response) => response.json())
       .then((result) => {
         setPosts(result);
-        // console.log(posts);
       });
   }, [userId]);
-  //   function handleChange(value) {
-  //     fetch(`http://localhost:3500/posts?title=${value}`, { method: "GET" })
-  //       .then((response) => response.json())
-  //       .then((result) => {
-  //         setPosts(result);
-  //         // console.log(posts);
-  //       });
-  //   }
 
   async function deletePost(url, id) {
     try {
